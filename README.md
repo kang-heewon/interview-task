@@ -8,15 +8,14 @@
 <br>
 개발 과제가 완료되기전 까지 `Fork` 한 저장소를 제거하시면 안됩니다.
 
-
 ### Branch
 
-| /     | Branch Name                |
-|-------|----------------------------|
-| Forte | forte                      |
+| /     | Branch Name |
+| ----- | ----------- |
+| Forte | forte       |
 
 ### Interview Staff
 
-| /     | Email                      |
-|-------|----------------------------|
-| Forte | kevin@mingeun.com          |
+| /     | Email             |
+| ----- | ----------------- |
+| Forte | kevin@mingeun.com |
