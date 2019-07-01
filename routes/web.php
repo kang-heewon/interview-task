@@ -12,18 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/books', 'BookContoller@index');
+Route::get('/books/:id', 'BookContoller@show');
+Route::post('/books', 'BookContoller@store');
+Route::put('/books/:id', 'BookContoller@update');
+Route::delete('/books/:id', 'BookContoller@destroy');
