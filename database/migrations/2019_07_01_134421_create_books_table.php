@@ -16,9 +16,9 @@ class CreateBooksTable extends Migration
     Schema::create('books', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->string('name');
-      $table->unsignedBigInteger('categories_id');
+      $table->unsignedBigInteger('category_id');
       $table
-        ->foreign('categories_id')
+        ->foreign('category_id')
         ->references('id')
         ->on('categories')
         ->onUpdate('cascade')
