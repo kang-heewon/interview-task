@@ -24,7 +24,7 @@ class BookController extends Controller
    */
   public function create()
   {
-    //
+    return view('create');
   }
 
   /**
@@ -37,6 +37,7 @@ class BookController extends Controller
   {
     $category = $request->input('category');
     $categoryId = CategoryService::createCategory($category);
+    $book = new \stdClass();
     $book->categoryId = $categoryId;
     $book->name = $request->input('name');
     $book->price = $request->input('price');
@@ -53,6 +54,17 @@ class BookController extends Controller
   {
     return BookService::getBooksById($id);
   }
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+    $data["book"] = BookService::getBooksById($id);
+    return view('edit', $data);
+  }
 
   /**
    * Update the specified resource in storage.
@@ -65,11 +77,12 @@ class BookController extends Controller
   {
     $category = $request->input('category');
     $categoryId = CategoryService::createCategory($category);
+    $book = new \stdClass();
     $book->id = $id;
     $book->categoryId = $categoryId;
     $book->name = $request->input('name');
     $book->price = $request->input('price');
-    return BookService::createBook($book);
+    return BookService::updateBook($book);
   }
 
   /**
@@ -80,7 +93,8 @@ class BookController extends Controller
    */
   public function destroy($id)
   {
-    return BookService::deleteBook($id);
+    BookService::deleteBook($id);
+    return redirect()->route('books');
   }
 
   /**
