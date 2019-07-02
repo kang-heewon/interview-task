@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Services\CategoryService;
+use App\Http\Services\BookService;
 use App\Book;
 use App\Category;
 
@@ -20,14 +22,12 @@ class DatabaseSeeder extends Seeder
       return $value->id;
     });
     foreach ($jsonContents as $book) {
-      $newCategory = new Category();
-      $newCategory->category = $book->category;
-      $newCategory->save();
-      $newBook = new Book();
+      $newBook = new stdClass();
+      $categoryId = CategoryService::createCategory($book->category);
+      $newBook->categoryId = $categoryId;
       $newBook->name = $book->name;
-      $newBook->categories_id = $newCategory->id;
       $newBook->price = $book->price;
-      $newBook->save();
+      BookService::createBook($newBook);
     }
   }
 }
