@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Category extends Model
 {
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
-  protected $fillable = ['name', 'price'];
+  protected $fillable = ['category'];
 
-  public function category()
+  public function books()
   {
-    return $this->belongsTo('App\Category');
+    return $this->hasMany('App\Book');
   }
 }
