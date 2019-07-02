@@ -12,18 +12,18 @@ class CategoryService
   }
   public static function getBooksByCategory($id)
   {
-    return Category::where('id', $id)->get()->books;
+    return Category::find($id)->books;
   }
 
   public static function createCategory($category)
   {
-    if (Category::where('name', $category)->count() == 0) {
+    if (Category::where('category', $category)->count() == 0) {
       $newCategory = new Category();
       $newCategory->category = $category;
       $newCategory->save();
       return $newCategory->id;
     } else {
-      return Category::where('name', $category)->get()->id;
+      return Category::where("category", $category)->get()[0]->id;
     }
   }
 }

@@ -12,13 +12,13 @@ class BookService
   }
   public static function getBooksById($id)
   {
-    return Book::where('id', $id)->get();
+    return Book::find($id);
   }
   public static function createBook($book)
   {
     $newBook = new Book();
     $newBook->name = $book->name;
-    $newBook->categories_id = $categoryId;
+    $newBook->category_id = $book->categoryId;
     $newBook->price = $book->price;
     $newBook->save();
     return $newBook;
@@ -27,7 +27,7 @@ class BookService
   {
     $updateBook = Book::find($book->id);
     $updateBook->name = $book->name;
-    $updateBook->categories_id = $categoryId;
+    $updateBook->category_id = $book->categoryId;
     $updateBook->price = $book->price;
     $updateBook->save();
     return $updateBook;
