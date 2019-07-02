@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-
+use App\Http\Services\BookService;
+use App\Http\Services\CategoryService;
 class BookController extends Controller
 {
   /**
    * Display a listing of the resource.
-   *
    * @return \Illuminate\Http\Response
    */
   public function index()
+  {
+    return BookService::getBooks();
+  }
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
   {
     //
   }
@@ -26,7 +35,12 @@ class BookController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $category = $request->input('category');
+    $categoryId = CategoryService::createCategory($category);
+    $book->categoryId = $categoryId;
+    $book->name = $request->input('name');
+    $book->price = $request->input('price');
+    return BookService::createBook($book);
   }
 
   /**
@@ -37,7 +51,7 @@ class BookController extends Controller
    */
   public function show($id)
   {
-    //
+    return BookService::getBooksById($id);
   }
 
   /**
@@ -49,7 +63,13 @@ class BookController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $category = $request->input('category');
+    $categoryId = CategoryService::createCategory($category);
+    $book->id = $id;
+    $book->categoryId = $categoryId;
+    $book->name = $request->input('name');
+    $book->price = $request->input('price');
+    return BookService::createBook($book);
   }
 
   /**
@@ -60,7 +80,7 @@ class BookController extends Controller
    */
   public function destroy($id)
   {
-    //
+    return BookService::deleteBook($id);
   }
 
   /**
