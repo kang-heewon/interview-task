@@ -15,10 +15,12 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/books', 'BookController@index');
+Route::get('/books', 'BookController@index')->name("books");
+Route::get('/books/create', 'BookController@create');
+Route::get('/books/update/{id}', 'BookController@edit');
+
 Route::get('/books/{id}', 'BookController@show');
 
-Route::get('/books/create', 'BookController@create');
 Route::post('/books', 'BookController@store');
 
 Route::put('/books/{id}', 'BookController@update');
