@@ -22,6 +22,6 @@ class CategoryController extends Controller
    */
   public function show($id)
   {
-    return CategoryService::getBooks();
+    return CategoryService::getBooksByCategory($id);
   }
 }
